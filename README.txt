@@ -1,4 +1,4 @@
-File takes a directory of .txt, .csv and/or .xls(x) files and compiles a list of all field headers contained in the
+Takes a directory of .txt, .csv and/or .xls(x) files and compiles a list of all field headers contained in the
 files. This list is then used to generate a report of which files contain which field headers and which field headers
 are contained in which files.
 
