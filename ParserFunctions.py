@@ -11,7 +11,6 @@ from xlrd import XLRDError
 def pullFiles(path):
     return returnCsvs([f for f in listdir(path) if isfile(join(path, f))], path)
 
-
 # takes a list of file names and returns only those ending in a .txt file format, .csv file format, or .xls,
 # which is converted to a .csv using the excelToCsv function
 def returnCsvs(files, path):
@@ -45,7 +44,6 @@ def returnCsvs(files, path):
         if extension == "txt" or extension == "csv":
             csvFiles.append(file)
     return csvFiles
-
 
 # takes a list of directories and adds all csv files from directories into two lists
 def fillCsvLists(directories):
@@ -81,7 +79,6 @@ def fillCsvDict(csvFiles, csvPaths):
     f.close()   # close the file
     return csvDict
 
-
 # parses a line from a csv file into an array of strings
 def parseLine(line):
     row = []    # a list for all fields contained in a line of a .csv file
@@ -89,14 +86,14 @@ def parseLine(line):
 
     # iterate over all characters in a given line, parsing on ',' and adding to the row list
     for char in line:
+        # skip over quotation marks
         if char == "\"":
             continue
-        if char is not '\n':
-            if char is not ",":
-                field = field + char    # append char to the field String
-            else:
-                row.append(field.lower())   # append field to the row list
-                field = ""  # reset field
+        if char is not "," and char != '\n':
+            field = field + char    # append char to the field String
+        else:
+            row.append(field.lower())   # append field to the row list
+            field = ""  # reset field
     return row
 
 # generate non-duplicate list of all fields from the csv files
